@@ -19,20 +19,22 @@ int main()
 	const int MAX_WRONG = 8;	// maximum number of incorrect guesses allowed
 
 	vector<string> words;		// collection of possible words to guess
-	words.push_back("GUESS");
+	/*words.push_back("GUESS");
 	words.push_back("HANGMAN");
 	words.push_back("DIFFICULT");
 	words.push_back("ILOVEYOU");
-	words.push_back("ALWAYS");
+	words.push_back("ALWAYS");*/
+	words.push_back("RYE");
 	// when adding new words, ensure they are in UPPERCASE
 
-	char answer; // keeps track of if the player wants to play again. 
+	string answer; // keeps track of if the player wants to play again. 
 
 	cout << "Welcome to Hangman. Good luck!\n";
 
 	// Play again loop. 
 	do
 	{
+		answer = "";	// reset so the user is asked again at the bottom
 
 		srand(static_cast<unsigned int>(time(0)));
 		random_shuffle(words.begin(), words.end());
@@ -96,12 +98,13 @@ int main()
 
 		while (true)
 		{
-			// Ask if they want to play again
-			cout << "\n\nDo you want to play again? Enter y for yes or n for no.\n";
-
-			cin >> answer;
-
-			if (answer == 'y' || answer == 'n')
+			if (answer == "") {
+				// Ask if they want to play again
+				cout << "\n\nDo you want to play again? Enter y for yes or n for no.\n";
+				cin >> answer;
+			}
+			
+			if (answer == "y" || answer == "n")
 			{
 				break;
 			}
@@ -114,7 +117,7 @@ int main()
 
 		}
 
-	} while (answer == 'y');
+	} while (answer == "y");
 
 	return 0;
 }
